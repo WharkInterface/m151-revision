@@ -7,21 +7,23 @@
 **/
 
 require_once 'php/tools.php';
+require_once 'php/model/activities.php';
+require_once 'php/model/classes.php';
 require_once 'php/model/database.php';
 
-$classes = [
-    "I.FDA-P3A",
-    "I.FDA-P3B",
-    "I.FDA-P3C",
-    "I.FDA-P3D"
-];
+$dbClasses = getClasses();
+$dbActivities = getActivites();
 
-$activities = [
-    "Tir à l'arc",
-    "Basket",
-    "Badminton",
-    "Canöe"
-];
+$classes = [];
+$activities = [];
+
+foreach ($dbClasses as $class) {
+    $classes[] = $class["nomClasse"];
+}
+
+foreach ($dbActivities as $activity) {
+    $activities[] = $activity["nomActivite"];
+}
 
 $surname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_STRING);
 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
