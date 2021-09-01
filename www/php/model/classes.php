@@ -13,3 +13,8 @@ function getClasses() {
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function addClass($className) {
+    $query = db()->prepare("INSERT INTO classe (nomClasse) VALUES (?)");
+    $query->execute([$className]);
+}

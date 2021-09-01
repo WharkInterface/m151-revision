@@ -44,6 +44,14 @@ if ($action == "confirm") {
         $output = "Vérifiez que tous les champs soient complets.";
     }
 }
+else if ($action == "cancel") {
+    $surname = "";
+    $name = "";
+    $class = "";
+    $firstActivity = "";
+    $secondActivity = "";
+    $thirdActivity = "";
+}
 
 ?>
 
@@ -97,6 +105,9 @@ if ($action == "confirm") {
         </form>
         <?= $output ?>
     </main>
+    <footer>
+        <p>Fait par Alexandre PINTRAND - I.FDA-P3C - 01/09/2021</p>
+    </footer>
 </body>
 
 </html>

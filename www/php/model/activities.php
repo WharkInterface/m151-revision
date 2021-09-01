@@ -13,3 +13,8 @@ function getActivites() {
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function addActivity($activityName) {
+    $query = db()->prepare("INSERT INTO activite(nomActivite) VALUES (?)");
+    $query->execute([$activityName]);
+}
