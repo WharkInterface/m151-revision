@@ -76,6 +76,8 @@ if ($action == "addActivity") {
                 <?= $classOutput ?>
                 <button type="submit" name="action" value="addClass">Ajouter</button>
             </fieldset>
+            <a href="activitiesList.php">Liste des activités</a>
+            <a href="classesList.php">Liste des classes</a>
         </form>
     </main>
     <footer>

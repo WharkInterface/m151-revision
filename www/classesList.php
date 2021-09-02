@@ -7,10 +7,10 @@
 **/
 
 require_once 'php/tools.php';
-require_once 'php/model/activities.php';
+require_once 'php/model/classes.php';
 require_once 'php/model/database.php';
 
-$dbActivities = getActivites();
+$dbClasses = getClasses();
 
 ?>
 
@@ -25,7 +25,7 @@ $dbActivities = getActivites();
 </head>
 <body>
     <header>
-        <h1>Liste des activités</h1>
+        <h1>Liste des classes</h1>
     </header>
     <main>
         <table>
@@ -35,12 +35,12 @@ $dbActivities = getActivites();
             </tr>
             <?php
 
-            foreach ($dbActivities as $activity) { ?>
+            foreach ($dbClasses as $class) { ?>
                 <tr>
-                    <td><?= $activity["idActivite"] ?></td>
-                    <td><?= $activity["nomActivite"] ?></td>
-                    <td><a href="editActivity.php?id=<?= $activity["idActivite"]?>">Éditer</a></td>
-                    <td><a href="deleteActivity.php?id=<?= $activity["idActivite"]?>">Supprimer</a></td>
+                    <td><?= $class["idClasse"] ?></td>
+                    <td><?= $class["nomClasse"] ?></td>
+                    <td><a href="editClass.php?id=<?= $class["idClasse"]?>">Éditer</a></td>
+                    <td><a href="deleteClass.php?id=<?= $class["idClasse"]?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
         </table>

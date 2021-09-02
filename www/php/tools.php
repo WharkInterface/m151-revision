@@ -18,3 +18,8 @@ function displayStickySelect($name, $list, $previousChoice) {
     } 
     echo '</select>';
 }
+
+function headTo($destination) {
+    header("Location: $destination");
+    exit();
+}
