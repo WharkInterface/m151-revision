@@ -39,8 +39,8 @@ $dbActivities = getActivites();
                 <tr>
                     <td><?= $activity["idActivite"] ?></td>
                     <td><?= $activity["nomActivite"] ?></td>
-                    <td><a href="editActivity.php?id=<?= $activity["idActivite"]?>">Éditer</a></td>
-                    <td><a href="deleteActivity.php?id=<?= $activity["idActivite"]?>">Supprimer</a></td>
+                    <td><a href="editactivity.php?id=<?= $activity["idActivite"]?>">Éditer</a></td>
+                    <td><a href="deleteactivity.php?id=<?= $activity["idActivite"]?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
         </table>

@@ -8,17 +8,6 @@
 
 require_once 'database.php';
 
-function getActivites() {
-    try {
-        $query = db()->prepare("SELECT * FROM activite");
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
-    catch (PDOException $e) {
-        throw $e;
-    }
-}
-
 function addActivity($activityName) {
     try {
         $query = db()->prepare("INSERT INTO activite(nomActivite) VALUES (?)");
@@ -29,11 +18,10 @@ function addActivity($activityName) {
     }
 }
 
-function getActivityById($id) {
+function deleteActivity($id) {
     try {
-        $query = db()->prepare("SELECT * FROM activite WHERE idActivite = ?");
+        $query = db()->prepare("DELETE FROM activite WHERE idActivite = ?");
         $query->execute([$id]);
-        return $query->fetch(PDO::FETCH_ASSOC);
     }
     catch (PDOException $e) {
         throw $e;
@@ -50,10 +38,22 @@ function editActivity($id, $nomActivite) {
     }
 }
 
-function deleteActivity($id) {
+function getActivites() {
     try {
-        $query = db()->prepare("DELETE FROM activite WHERE idActivite = ?");
+        $query = db()->prepare("SELECT * FROM activite");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+    catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function getActivityById($id) {
+    try {
+        $query = db()->prepare("SELECT * FROM activite WHERE idActivite = ?");
         $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
     catch (PDOException $e) {
         throw $e;

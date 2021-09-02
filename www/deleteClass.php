@@ -21,14 +21,14 @@ if ($id) {
     if ($action == "deleteClass") {
         deleteClass($id);
         $classOutput = "Suppression effectuée avec succès.";
-        headTo("classesList.php");
+        headTo("classeslist.php");
     }
     else if ($action == "cancel") {
-        headTo("classesList.php");
+        headTo("classeslist.php");
     }   
 }
 else {
-    headTo("classesList.php");
+    headTo("classeslist.php");
 }
 
 ?>

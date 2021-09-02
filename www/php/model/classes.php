@@ -8,21 +8,30 @@
 
 require_once 'database.php';
 
-function getClasses() {
+function addClass($className) {
     try {
-        $query = db()->prepare("SELECT * FROM classe");
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = db()->prepare("INSERT INTO classe (nomClasse) VALUES (?)");
+        $query->execute([$className]);
     }
     catch (PDOException $e) {
         throw $e;
     }
 }
 
-function addClass($className) {
+function deleteClass($id) {
     try {
-        $query = db()->prepare("INSERT INTO classe (nomClasse) VALUES (?)");
-        $query->execute([$className]);
+        $query = db()->prepare("DELETE FROM classe WHERE idClasse = ?");
+        $query->execute([$id]);
+    }
+    catch (PDOException $e) {
+        throw $e;
+    }
+}
+
+function editClass($id, $nomClasse) {
+    try {
+        $query = db()->prepare("UPDATE classe SET nomClasse = ? WHERE idClasse = ?");
+        $query->execute([$nomClasse, $id]);
     }
     catch (PDOException $e) {
         throw $e;
@@ -40,20 +49,11 @@ function getClassById($id) {
     }
 }
 
-function editClass($id, $nomClasse) {
+function getClasses() {
     try {
-        $query = db()->prepare("UPDATE classe SET nomClasse = ? WHERE idClasse = ?");
-        $query->execute([$nomClasse, $id]);
-    }
-    catch (PDOException $e) {
-        throw $e;
-    }
-}
-
-function deleteClass($id) {
-    try {
-        $query = db()->prepare("DELETE FROM classe WHERE idClasse = ?");
-        $query->execute([$id]);
+        $query = db()->prepare("SELECT * FROM classe");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (PDOException $e) {
         throw $e;

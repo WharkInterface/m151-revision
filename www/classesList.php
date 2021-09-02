@@ -39,8 +39,8 @@ $dbClasses = getClasses();
                 <tr>
                     <td><?= $class["idClasse"] ?></td>
                     <td><?= $class["nomClasse"] ?></td>
-                    <td><a href="editClass.php?id=<?= $class["idClasse"]?>">Éditer</a></td>
-                    <td><a href="deleteClass.php?id=<?= $class["idClasse"]?>">Supprimer</a></td>
+                    <td><a href="editclass.php?id=<?= $class["idClasse"]?>">Éditer</a></td>
+                    <td><a href="deleteclass.php?id=<?= $class["idClasse"]?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
         </table>

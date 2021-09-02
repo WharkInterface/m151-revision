@@ -20,7 +20,7 @@ if ($id) {
     $activity = getActivityById($id);
 }
 else {
-    headTo("activitiesList.php");
+    headTo("activitieslist.php");
 }
 
 if ($action == "editActivity") {
@@ -34,7 +34,7 @@ if ($action == "editActivity") {
         }
 }
 else if ($action == "cancel") {
-    headTo("activitiesList.php");
+    headTo("activitieslist.php");
 }
 
 ?>

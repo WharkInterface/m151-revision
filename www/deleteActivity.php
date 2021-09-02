@@ -21,14 +21,14 @@ if ($id) {
     if ($action == "deleteActivity") {
         deleteActivity($id);
         $activityOutput = "Suppression effectuée avec succès.";
-        headTo("activitiesList.php");
+        headTo("activitieslist.php");
     }
     else if ($action == "cancel") {
-        headTo("activitiesList.php");
+        headTo("activitieslist.php");
     }   
 }
 else {
-    headTo("activitiesList.php");
+    headTo("activitieslist.php");
 }
 
 ?>

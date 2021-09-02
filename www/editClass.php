@@ -20,7 +20,7 @@ if ($id) {
     $class = getClassById($id);
 }
 else {
-    headTo("classesList.php");
+    headTo("classeslist.php");
 }
 
 if ($action == "editClass") {
@@ -34,7 +34,7 @@ if ($action == "editClass") {
         }
 }
 else if ($action == "cancel") {
-    headTo("classesList.php");
+    headTo("classeslist.php");
 }
 
 ?>
