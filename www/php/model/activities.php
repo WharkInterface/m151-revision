@@ -42,7 +42,7 @@ function getActivites() {
     try {
         $query = db()->prepare("SELECT * FROM activite");
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_KEY_PAIR);
     }
     catch (PDOException $e) {
         throw $e;

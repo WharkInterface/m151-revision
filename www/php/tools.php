@@ -6,6 +6,19 @@
  * @version 1.0, 01/09/2021, Initial revision
 **/
 
+initSession();
+
+function initSession() {
+    session_start();
+
+    if (!isset($_SESSION['idUtilisateur'])) {
+        $_SESSION = [
+            'idUtilisateur' => false,
+            'pseudo' => "",
+        ];
+    }
+}
+
 function displayStickySelect($name, $list, $previousChoice) {
     echo '<select name="'.$name.'">';
     foreach($list as $value) {
@@ -19,7 +32,28 @@ function displayStickySelect($name, $list, $previousChoice) {
     echo '</select>';
 }
 
+function displayStickySelectWithKeys($name, $list, $previousChoice) {
+    echo '<select name="'.$name.'">';
+    $html = "";
+                    
+    foreach($list as $idItem => $oneItem) {
+        $selected = $idItem == $previousChoice ? 'selected' : '';
+        $html .= "<option value=\"$idItem\" $selected>$oneItem</option>\n";
+    }
+
+    echo $html;
+    echo '</select>';
+}
+
 function headTo($destination) {
     header("Location: $destination");
     exit();
+}
+
+function getUser() {
+    return $_SESSION['idUtilisateur'];
+}
+
+function userIsConnected() {
+    return getUser() !== false;
 }

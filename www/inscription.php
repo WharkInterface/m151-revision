@@ -10,6 +10,7 @@ require_once 'php/tools.php';
 require_once 'php/model/activities.php';
 require_once 'php/model/classes.php';
 require_once 'php/model/database.php';
+require_once 'php/model/eleves.php';
 
 $dbClasses = getClasses();
 $dbActivities = getActivites();
@@ -17,20 +18,12 @@ $dbActivities = getActivites();
 $classes = [];
 $activities = [];
 
-foreach ($dbClasses as $class) {
-    $classes[] = $class["nomClasse"];
-}
-
-foreach ($dbActivities as $activity) {
-    $activities[] = $activity["nomActivite"];
-}
-
 $surname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_STRING);
 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-$class = filter_input(INPUT_POST, "class", FILTER_SANITIZE_STRING);
-$firstActivity = filter_input(INPUT_POST, "firstActivity", FILTER_SANITIZE_STRING);
-$secondActivity = filter_input(INPUT_POST, "secondActivity", FILTER_SANITIZE_STRING);
-$thirdActivity = filter_input(INPUT_POST, "thirdActivity", FILTER_SANITIZE_STRING);
+$class = filter_input(INPUT_POST, "class", FILTER_VALIDATE_INT);
+$firstActivity = filter_input(INPUT_POST, "firstActivity", FILTER_VALIDATE_INT);
+$secondActivity = filter_input(INPUT_POST, "secondActivity", FILTER_VALIDATE_INT);
+$thirdActivity = filter_input(INPUT_POST, "thirdActivity", FILTER_VALIDATE_INT);
 
 $action = filter_input(INPUT_POST, "action", FILTER_SANITIZE_STRING);
 
@@ -38,7 +31,8 @@ $output = "";
 
 if ($action == "confirm") {
     if ($surname && $name && $class && $firstActivity && $secondActivity && $thirdActivity) {
-        $output = "Nom : $surname <br> Prénom : $name <br> Classe : $class <br> Choix 1 : $firstActivity <br> Choix 2 : $secondActivity <br> Choix 3 : $thirdActivity";
+        inscrireEleveActivite($surname, $name, $class, $firstActivity, $secondActivity, $thirdActivity);
+        $output = "Succès.";
     }
     else {
         $output = "Vérifiez que tous les champs soient complets.";
@@ -83,21 +77,21 @@ else if ($action == "cancel") {
                 </div>
                 <div>
                     <label for="class">Classe</label>
-                    <?php displayStickySelect("class", $classes, $class); ?>
+                    <?php displayStickySelectWithKeys("class", $dbClasses, $class) ?>
                 </div>
             </div>
             <div>
                 <div>
                     <label for="firstActivity">Premier choix :</label>
-                    <?php displayStickySelect("firstActivity", $activities, $firstActivity); ?>
+                    <?php displayStickySelectWithKeys("firstActivity", $dbActivities, $firstActivity) ?>
                 </div>
                 <div>
                     <label for="secondActivity">Deuxième choix :</label>
-                    <?php displayStickySelect("secondActivity", $activities, $secondActivity); ?>
+                    <?php displayStickySelectWithKeys("secondActivity", $dbActivities, $secondActivity) ?>
                 </div>
                 <div>
                     <label for="thirdActivity">Troisième choix :</label>
-                    <?php displayStickySelect("thirdActivity", $activities, $thirdActivity); ?>
+                    <?php displayStickySelectWithKeys("thirdActivity", $dbActivities, $thirdActivity) ?>
                 </div>
             </div>
             <button type="submit" name="action" value="confirm">Confirmer</button>
