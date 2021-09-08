@@ -10,7 +10,7 @@ require_once 'php/tools.php';
 require_once 'php/model/utilisateurs.php';
 
 if (userIsConnected()) {
-    gotoPage("inscription.php");
+    headTo("inscription.php");
 }
 
 $action = filter_input(INPUT_POST, "action", FILTER_SANITIZE_STRING);
@@ -22,7 +22,7 @@ $output = "";
 
 if ($action == "connect") {
     if (isLoginValid($username, $password)) {
-        $_SESSION = isLoginValid($username, $password);
+        $_SESSION["pseudo"] = $username; 
         $output = "Connexion réussie avec succès.";
         headTo("admin.php");
     }

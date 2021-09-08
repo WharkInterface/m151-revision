@@ -10,6 +10,10 @@ require_once 'php/tools.php';
 require_once 'php/model/classes.php';
 require_once 'php/model/database.php';
 
+if (!userIsConnected()) {
+    headTo("inscription.php");
+}
+
 $dbClasses = getClasses();
 
 ?>
@@ -35,12 +39,12 @@ $dbClasses = getClasses();
             </tr>
             <?php
 
-            foreach ($dbClasses as $class) { ?>
+            foreach ($dbClasses as $index => $class) { ?>
                 <tr>
-                    <td><?= $class["idClasse"] ?></td>
-                    <td><?= $class["nomClasse"] ?></td>
-                    <td><a href="editclass.php?id=<?= $class["idClasse"]?>">Éditer</a></td>
-                    <td><a href="deleteclass.php?id=<?= $class["idClasse"]?>">Supprimer</a></td>
+                    <td><?= $index ?></td>
+                    <td><?= $class ?></td>
+                    <td><a href="editclass.php?id=<?= $index ?>">Éditer</a></td>
+                    <td><a href="deleteclass.php?id=<?= $index ?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
         </table>

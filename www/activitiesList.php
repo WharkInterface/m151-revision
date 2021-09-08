@@ -10,6 +10,10 @@ require_once 'php/tools.php';
 require_once 'php/model/activities.php';
 require_once 'php/model/database.php';
 
+if (!userIsConnected()) {
+    headTo("inscription.php");
+}
+
 $dbActivities = getActivites();
 
 ?>
@@ -35,12 +39,12 @@ $dbActivities = getActivites();
             </tr>
             <?php
 
-            foreach ($dbActivities as $activity) { ?>
+            foreach ($dbActivities as $index => $activity) { ?>
                 <tr>
-                    <td><?= $activity["idActivite"] ?></td>
-                    <td><?= $activity["nomActivite"] ?></td>
-                    <td><a href="editactivity.php?id=<?= $activity["idActivite"]?>">Éditer</a></td>
-                    <td><a href="deleteactivity.php?id=<?= $activity["idActivite"]?>">Supprimer</a></td>
+                    <td><?= $index ?></td>
+                    <td><?= $activity ?></td>
+                    <td><a href="editactivity.php?id=<?= $index ?>">Éditer</a></td>
+                    <td><a href="deleteactivity.php?id=<?= $index ?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
         </table>

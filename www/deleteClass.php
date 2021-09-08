@@ -10,6 +10,10 @@ require_once 'php/tools.php';
 require_once 'php/model/classes.php';
 require_once 'php/model/database.php';
 
+if (!userIsConnected()) {
+    headTo("inscription.php");
+}
+
 $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
 $action = filter_input(INPUT_POST, "action", FILTER_SANITIZE_STRING);

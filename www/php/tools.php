@@ -11,10 +11,9 @@ initSession();
 function initSession() {
     session_start();
 
-    if (!isset($_SESSION['idUtilisateur'])) {
+    if (!isset($_SESSION['pseudo'])) {
         $_SESSION = [
-            'idUtilisateur' => false,
-            'pseudo' => "",
+            'pseudo' => false
         ];
     }
 }
@@ -51,7 +50,7 @@ function headTo($destination) {
 }
 
 function getUser() {
-    return $_SESSION['idUtilisateur'];
+    return $_SESSION['pseudo'];
 }
 
 function userIsConnected() {

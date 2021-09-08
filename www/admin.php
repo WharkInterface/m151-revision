@@ -11,6 +11,10 @@ require_once 'php/model/activities.php';
 require_once 'php/model/classes.php';
 require_once 'php/model/database.php';
 
+if (!userIsConnected()) {
+    headTo("inscription.php");
+}
+
 $activityName = filter_input(INPUT_POST, "activityName", FILTER_SANITIZE_STRING);
 $className = filter_input(INPUT_POST, "className", FILTER_SANITIZE_STRING);
 
